@@ -1,25 +1,29 @@
-
 const prompt = require("prompt-sync")({ sigint: true });
 
 // const age = prompt("How old are you? ");
 // console.log(`You are ${age} years old.`);node 
 
-var text=[];
+let text='';
 text= prompt("Text : ");
-const key = prompt("Key : ");
-var en=[]
+var k = parseInt(prompt("Key : "));
+let en='';
 i=0;
+charCode=0;
 
 for(i=0; i<text.length;i++)
 {
-    var a=text[i];
-    var b=a.charCodeAt(0) += key;
-    //var c= b;
-    en.push(b)
-    
-
-    
+    charCode = text[i].charCodeAt();
+    if (charCode > 96 && charCode < 123){
+        charCode = 96 + (charCode - 96 + k) % 26;
+        //charCode += k % 26;
+    }
+    // else if(charCode > 122){
+    //     charCode = (charCode - 122) + 96;
+    // }
+    else if (charCode > 64 && charCode < 91){
+        charCode = 64 + (charCode - 64 + k) % 26;
+    }
+    en += String.fromCharCode(charCode);
 }
-console.log(`ASCII VALUE: ${en}`)
-
+    console.log(`Encrypted Text: ${en}`);
 
